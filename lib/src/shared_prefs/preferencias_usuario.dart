@@ -9,7 +9,6 @@ class PreferenciasUsuarios {
   }
 
   PreferenciasUsuarios._internal() {
-    initPrefs();
   }
 
   SharedPreferences _prefs;
@@ -18,11 +17,27 @@ class PreferenciasUsuarios {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  get genero {
-    return _prefs.getInt('genero');
+  int get genero {
+    return _prefs.getInt('genero') ?? 1;
   }
 
   set genero(int value) {
     _prefs.setInt('genero', value);
+  }
+
+  bool get colorSecundario {
+    return _prefs.getBool('colorSecundario') ?? false;
+  }
+
+  set colorSecundario(bool value) {
+    _prefs.setBool('colorSecundario', value);
+  }
+
+  String get nombre {
+    return _prefs.getString('nombre') ?? '';
+  }
+
+  set nombre(String value) {
+    _prefs.setString('nombre', value);
   }
 }

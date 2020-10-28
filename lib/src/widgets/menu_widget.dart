@@ -42,7 +42,7 @@ class MenuWidget extends StatelessWidget {
               Icons.settings,
               color: Colors.blue,
             ),
-            title: Text('People'),
+            title: Text('Settings'),
             onTap: () =>
                 Navigator.pushReplacementNamed(context, SettingsPage.routeName),
           ),

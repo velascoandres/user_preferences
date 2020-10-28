@@ -14,15 +14,16 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _colorSecundario = false;
   int _genero = 1;
-  String _nombre = 'Pedro';
   TextEditingController _textController;
   final prefs = new PreferenciasUsuarios();
 
   @override
   void initState() {
     super.initState();
+    _genero = prefs.genero;
+    _colorSecundario = prefs.colorSecundario;
     _textController = new TextEditingController(
-      text: _nombre,
+      text: prefs.nombre,
     );
   }
 
@@ -31,6 +32,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ajustes'),
+        backgroundColor:
+            (prefs.colorSecundario ? Colors.black : Colors.blueAccent),
       ),
       drawer: MenuWidget(),
       body: SingleChildScrollView(
@@ -50,8 +53,11 @@ class _SettingsPageState extends State<SettingsPage> {
             SwitchListTile(
               value: _colorSecundario,
               title: Text('Color secundario'),
-              onChanged: (valor) => setState(
-                () => _colorSecundario = valor,
+              onChanged: (bool valor) => setState(
+                () {
+                  _colorSecundario = valor;
+                  prefs.colorSecundario = valor;
+                },
               ),
             ),
             RadioListTile(
@@ -74,7 +80,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   labelText: 'Nombre',
                   helperText: 'Nombre del usuario',
                 ),
-                onChanged: (valor) {},
+                onChanged: (String valor) {
+                  prefs.nombre = valor;
+                },
                 controller: _textController,
               ),
             )
