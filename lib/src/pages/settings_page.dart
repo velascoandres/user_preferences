@@ -25,6 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _textController = new TextEditingController(
       text: prefs.nombre,
     );
+    prefs.ultimaPagina = SettingsPage.routeName;
   }
 
   @override

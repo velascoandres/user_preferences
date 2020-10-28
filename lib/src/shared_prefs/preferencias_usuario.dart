@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user_preferences/src/pages/home_page.dart';
 
 class PreferenciasUsuarios {
   static final PreferenciasUsuarios _instancia =
@@ -8,8 +9,7 @@ class PreferenciasUsuarios {
     return _instancia;
   }
 
-  PreferenciasUsuarios._internal() {
-  }
+  PreferenciasUsuarios._internal();
 
   SharedPreferences _prefs;
 
@@ -39,5 +39,13 @@ class PreferenciasUsuarios {
 
   set nombre(String value) {
     _prefs.setString('nombre', value);
+  }
+
+  String get ultimaPagina {
+    return _prefs.getString('ultimaPagina') ?? 'home';
+  }
+
+  set ultimaPagina(String value) {
+    _prefs.setString('ultimaPagina', value);
   }
 }
